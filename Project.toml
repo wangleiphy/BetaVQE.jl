@@ -17,6 +17,13 @@ YaoExtensions = "7a06699c-c960-11e9-3c98-9f78548b5f0f"
 Zygote = "e88e6eb3-aa80-5325-afca-941959d7151f"
 
 [compat]
+FileIO = "1.2"
+Flux = "0.10"
+StatsBase = "0.32"
+VAN = "0.1"
+Yao = "0.6"
+YaoExtensions = "0.2"
+Zygote = "0.4"
 julia = "1"
 
 [extras]
