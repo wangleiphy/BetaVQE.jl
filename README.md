@@ -14,8 +14,8 @@
 ## Setup
 Clone this repo, add dependancies by typing `]` in a Julia REPL, and then
 ```julia
+pkg> add Yao YaoExtensions
 pkg> add StatsBase Zygote Flux JLD2 FileIO Fire
-pkg> add Yao YaoBlocks YaoExtensions
 pkg> dev https://github.com/wangleiphy/VAN.jl.git 
 pkg> dev .
 ```
