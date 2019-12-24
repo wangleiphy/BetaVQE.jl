@@ -11,8 +11,8 @@ JLD2 = "033835bb-8acc-5ee8-8aae-3f567f8a3819"
 StatsBase = "2913bbd2-ae8a-5f71-8c99-4fb6c76f3a91"
 VAN = "255db3ff-4450-4718-8808-f69314201519"
 Yao = "5872b779-8223-5990-8dd0-5abbb0748c8c"
-Zygote = "e88e6eb3-aa80-5325-afca-941959d7151f"
 YaoExtensions = "7a06699c-c960-11e9-3c98-9f78548b5f0f"
+Zygote = "e88e6eb3-aa80-5325-afca-941959d7151f"
 
 [compat]
 FileIO = "1.2"

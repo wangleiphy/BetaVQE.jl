@@ -7,7 +7,7 @@
 ## Solving Quantum Statistical Mechanics with Variational Autoregressive Networks and Quantum Circuits 
 
 [![Build Status](https://travis-ci.com/wangleiphy/BetaVQE.jl.svg?branch=master)](https://travis-ci.com/wangleiphy/BetaVQE.jl)
-[![Codecov](https://codecov.io/gh/wangleiphy/BetaVQE.jl/branch/master/graph/badge.svg)](https://codecov.io/gh/wangleiphy/VAN.jl)
+[![Codecov](https://codecov.io/gh/wangleiphy/BetaVQE.jl/branch/master/graph/badge.svg)](https://codecov.io/gh/wangleiphy/BetaVQE.jl)
 
 ### Setup
 Clone this repo, add dependancies by typing `]` in a Julia REPL, and then
