@@ -25,7 +25,7 @@ in a terminal to run tests.
 
 ### Run
 
-Run this to train the model
+Run this to train the transverse field Ising model
 ```bash 
 julia runner.jl learn 2 2 2.0 2.0
 ```
