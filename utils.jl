@@ -1,7 +1,7 @@
 using FileIO
 using Yao
 using YaoExtensions
-using ThermalVQE
+using BetaVQE
 using LinearAlgebra
 
 function build_key(nx, ny, Γ, β, depth, nsamples, nhiddens, lr; folder="data/")
