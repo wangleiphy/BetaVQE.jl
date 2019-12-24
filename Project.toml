@@ -1,6 +1,6 @@
 name = "BetaVQE"
 uuid = "11c46944-b2ae-4555-bf56-5433fb292ea1"
-authors = ["Lei Wang <wangleiphy@gmail.com>"]
+authors = ["Jin-Guo Liu <cacate0129@iphy.ac.cn>" , "Lei Wang <wangleiphy@gmail.com>"]
 version = "0.1.0"
 
 [deps]
