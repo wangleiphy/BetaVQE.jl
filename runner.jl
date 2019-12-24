@@ -3,7 +3,7 @@ using JLD2, FileIO
 using VAN
 using Yao
 using YaoExtensions
-using ThermalVQE
+using BetaVQE
 using Flux.Optimise: ADAM
 using StatsBase
 using Random
@@ -46,7 +46,7 @@ end
     circuit = tns_circuit(nbits, depth, pair_square(nx, ny; periodic=false); entangler=(n,i,j)->put(n,(i,j)=>general_U4()))
 
     h = hamiltonian(TFIM(nx, ny; Γ=Γ, periodic=false))
-    F_exact, E_exact, S_exact, Cv_exact, γ_exact = ThermalVQE.exact(β, h)
+    F_exact, E_exact, S_exact, Cv_exact, γ_exact = BetaVQE.exact(β, h)
 
     chkp_file = key*".jld2"
     if cont && isfile(chkp_file)
@@ -64,15 +64,15 @@ end
     end
 
     logfile = open(key*".log", "a")
-    cparams, qparams = ThermalVQE.train(β, h, network, circuit, logfile; optimizer=ADAM(lr), nbatch=nsamples, niter=niter)
+    cparams, qparams = BetaVQE.train(β, h, network, circuit, logfile; optimizer=ADAM(lr), nbatch=nsamples, niter=niter)
     close(logfile)
 
     #compute observables
     samples = gen_samples(network, nsamples)
-    E = ThermalVQE.energy(h, network, circuit, samples)
-    E2 = ThermalVQE.energy2(h, network, circuit, samples)
-    S = ThermalVQE.entropy(h, network, circuit, samples)
-    γ = ThermalVQE.purity(h, network, circuit, samples)
+    E = BetaVQE.energy(h, network, circuit, samples)
+    E2 = BetaVQE.energy2(h, network, circuit, samples)
+    S = BetaVQE.entropy(h, network, circuit, samples)
+    γ = BetaVQE.purity(h, network, circuit, samples)
     F = E - S/β
 
     Cv = β^2*(E2 - E^2)
@@ -111,7 +111,7 @@ end
 
     samples = gen_samples(network, nsamples)
     samples = unique(samples, dims=2)
-    s = ThermalVQE.spectra(h, network, circuit, samples)
+    s = BetaVQE.spectra(h, network, circuit, samples)
     jldopen(chkp_file, "a+") do file
         file["spectra"] = s
     end

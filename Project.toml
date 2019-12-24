@@ -1,6 +1,6 @@
-name = "ThermalVQE"
-uuid = "b4e12060-e9d2-11e9-1aed-03991160dfeb"
-authors = ["JinGuo Liu"]
+name = "BetaVQE"
+uuid = "5d43d899-0f07-4cfb-a61e-9eab26f3c092"
+authors = ["Lei Wang <wangleiphy@gmail.com>"]
 version = "0.1.0"
 
 [deps]

@@ -1,4 +1,4 @@
-module ThermalVQE
+module BetaVQE
 using Yao, LinearAlgebra
 using Flux.Optimise: ADAM, update!
 using StatsBase

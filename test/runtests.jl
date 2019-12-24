@@ -1,4 +1,4 @@
-using ThermalVQE, Yao, YaoExtensions
+using BetaVQE, Yao, YaoExtensions
 using Test, Random, StatsBase
 using Zygote
 using BitBasis
