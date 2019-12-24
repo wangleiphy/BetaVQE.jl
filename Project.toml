@@ -4,6 +4,7 @@ authors = ["Lei Wang <wangleiphy@gmail.com>"]
 version = "0.1.0"
 
 [deps]
+BitBasis = "50ba71b6-fa0f-514d-ae9a-0916efc90dcf"
 FileIO = "5789e2e9-d7fb-5bc7-8068-2c6fae9b9549"
 Fire = "652a1917-b8e5-5d9b-be38-bbf27e56fe44"
 Flux = "587475ba-b771-5e3f-ad9e-33799f191a9c"
