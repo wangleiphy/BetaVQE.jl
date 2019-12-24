@@ -14,6 +14,16 @@ Yao = "5872b779-8223-5990-8dd0-5abbb0748c8c"
 Zygote = "e88e6eb3-aa80-5325-afca-941959d7151f"
 YaoExtensions = "7a06699c-c960-11e9-3c98-9f78548b5f0f"
 
+[compat]
+FileIO = "1.2"
+Flux = "0.10"
+StatsBase = "0.32"
+VAN = "0.1"
+Yao = "0.6"
+YaoExtensions = "0.2"
+Zygote = "0.4"
+julia = "1"
+
 [extras]
 Random = "9a3f8284-a2c9-5f02-9a11-845980a1fd5c"
 Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
