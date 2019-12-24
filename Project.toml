@@ -1,35 +1,22 @@
 name = "BetaVQE"
-uuid = "5d43d899-0f07-4cfb-a61e-9eab26f3c092"
+uuid = "11c46944-b2ae-4555-bf56-5433fb292ea1"
 authors = ["Lei Wang <wangleiphy@gmail.com>"]
 version = "0.1.0"
 
 [deps]
-BitBasis = "50ba71b6-fa0f-514d-ae9a-0916efc90dcf"
 FileIO = "5789e2e9-d7fb-5bc7-8068-2c6fae9b9549"
 Fire = "652a1917-b8e5-5d9b-be38-bbf27e56fe44"
 Flux = "587475ba-b771-5e3f-ad9e-33799f191a9c"
 JLD2 = "033835bb-8acc-5ee8-8aae-3f567f8a3819"
-LinearAlgebra = "37e2e46d-f89d-539d-b4ee-838fcccc9c8e"
 StatsBase = "2913bbd2-ae8a-5f71-8c99-4fb6c76f3a91"
 VAN = "255db3ff-4450-4718-8808-f69314201519"
 Yao = "5872b779-8223-5990-8dd0-5abbb0748c8c"
-YaoExtensions = "7a06699c-c960-11e9-3c98-9f78548b5f0f"
 Zygote = "e88e6eb3-aa80-5325-afca-941959d7151f"
-
-[compat]
-FileIO = "1.2"
-Flux = "0.10"
-StatsBase = "0.32"
-VAN = "0.1"
-Yao = "0.6"
-YaoExtensions = "0.2"
-Zygote = "0.4"
-julia = "1"
+YaoExtensions = "7a06699c-c960-11e9-3c98-9f78548b5f0f"
 
 [extras]
 Random = "9a3f8284-a2c9-5f02-9a11-845980a1fd5c"
 Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
-YaoExtensions = "7a06699c-c960-11e9-3c98-9f78548b5f0f"
 
 [targets]
-test = ["Test", "YaoExtensions", "Random"]
+test = ["Test", "Random"]
