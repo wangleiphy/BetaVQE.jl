@@ -120,6 +120,6 @@ end
         dispatch!(c, params)
         g = (l2-l1)/2ϵ
         g2 = gradient(c->free_energy(2.0, h, model, c, samples), c)[1]
-        @test isapprox(g, g2[k], rtol=1e-2)
+        @test isapprox(g, g2[k], atol=1e-2)
     end
 end
