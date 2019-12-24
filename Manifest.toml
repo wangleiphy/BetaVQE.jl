@@ -434,17 +434,17 @@ uuid = "4ec0a83e-493e-50e2-b9ac-8f72acf5a8f5"
 
 [[VAN]]
 deps = ["Flux", "Random", "StatsBase", "Zygote"]
-git-tree-sha1 = "5e7c67577ba079b62e8b143e80a6fddfe7c164cd"
+git-tree-sha1 = "154851ee72a4133e456fecee13174dc99c514972"
 repo-rev = "master"
-repo-url = "https://github.com/wangleiphy/VAN.jl.git"
+repo-url = "https://github.com/wangleiphy/VAN.jl"
 uuid = "255db3ff-4450-4718-8808-f69314201519"
 version = "0.1.0"
 
 [[Yao]]
 deps = ["BitBasis", "Reexport", "YaoArrayRegister", "YaoBase", "YaoBlocks", "YaoSym"]
-git-tree-sha1 = "ab05fe31154fdb8c7d38f51a1d101f03fcb689f1"
+git-tree-sha1 = "df574698973a72b19848c025b151a6932baf20f1"
 uuid = "5872b779-8223-5990-8dd0-5abbb0748c8c"
-version = "0.6.0"
+version = "0.6.1"
 
 [[YaoArrayRegister]]
 deps = ["BitBasis", "LinearAlgebra", "LuxurySparse", "Random", "StaticArrays", "StatsBase", "TupleTools", "YaoBase"]
