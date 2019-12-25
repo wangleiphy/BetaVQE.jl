@@ -45,3 +45,7 @@ and key work parameters
 * lr::Real=0.01, ADAM learning rate,
 * niter::Int=500, number of iteration,
 * cont::Bool=false, continue from checkpoint if true.
+
+### Paper
+[arXiv:1912.11381](https://arxiv.org/abs/1912.11381)
+
