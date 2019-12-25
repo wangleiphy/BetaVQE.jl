@@ -37,12 +37,12 @@ This utility accepts the following arguments
 * Γ::Real=1.0, the strength of transverse field,
 * β::Real=1.0, inverse temperature,
 
-and key work parameters
+and keyword arguments
 
 * depth::Int=5, circuit depth,
 * nsamples::Int=1000, the batch size used in training,
-* nhiddens::Vector{Int}=[500], dimension of VAN's hidden layer,
-* lr::Real=0.01, ADAM learning rate,
+* nhiddens::Vector{Int}=[500], dimension of the VAN's hidden layer,
+* lr::Real=0.01, the learning rate of the ADAM optimizer,
 * niter::Int=500, number of iteration,
 * cont::Bool=false, continue from checkpoint if true.
 
