@@ -56,7 +56,7 @@ end
 end
 
 @testset "network diff" begin
-    Random.seed!(2)
+    Random.seed!(7)
     nbits = 2
     nhiddens = [10]
     nsamples = 1000
@@ -88,8 +88,8 @@ end
     model_dispatch!(model, params)
     samples = gen_samples(model, nsamples)
     g2 = gradient(model->free_energy(2.0, h, model, c, samples), model)[1]
-    @test isapprox(g, g2[m][n], rtol=1e-1)
-    @show g, g2[m][n]
+    @test isapprox(g, g2.W[1][n], rtol=1e-1)
+    @show g, g2.W[1][n]
 end
 
 @testset "tns circuit diff" begin
