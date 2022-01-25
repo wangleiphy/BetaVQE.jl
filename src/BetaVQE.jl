@@ -1,6 +1,7 @@
 module BetaVQE
 using Yao, LinearAlgebra
 using Flux.Optimise: ADAM, update!
+import Flux
 using StatsBase
 using VAN
 
@@ -35,8 +36,8 @@ function train(β::Real, H::AbstractBlock{N}, sampler::AbstractSampler, circuit:
     ϕ = model_parameters(sampler)
     θ = parameters(circuit)
     for i = 1:niter
-        _, _, gϕ, gθ, _ = gradient(loss, β, H, sampler, circuit, nbatch)
-        update!.(Ref(optimizer), ϕ, gϕ)
+        _, _, gϕ, gθ, _ = Flux.gradient(loss, β, H, sampler, circuit, nbatch)
+        update!.(Ref(optimizer), ϕ, collect_gradients(sampler, gϕ))
         update!(optimizer, θ, gθ)
         model_dispatch!(sampler, ϕ)
         dispatch!(circuit, θ)
@@ -50,5 +51,9 @@ function train(β::Real, H::AbstractBlock{N}, sampler::AbstractSampler, circuit:
     end
     ϕ, θ
 end
+
+# collect parameters into a tuple
+collect_gradients(model::AutoRegressiveModel, g) = (g.W..., g.b...)
+collect_gradients(model::PSAModel, g) = (g.w, )
 
 end # module

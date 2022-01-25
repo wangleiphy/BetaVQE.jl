@@ -1,5 +1,6 @@
 using BitBasis
-using VAN:get_logp, unpack_gradient
+using VAN:get_logp
+import Flux
 
 export free_energy, free_energy_local, energy, entropy
 
@@ -65,6 +66,5 @@ function loss_reinforce(β, H, sampler, circuit::AbstractBlock{N}, samples) wher
 end
 
 function grad_sampler(β, H, sampler, circuit::AbstractBlock{N}, samples) where N
-    g = gradient(loss_reinforce, β, H, sampler, circuit, samples)[3]
-    unpack_gradient(sampler, g)
+    return Flux.gradient(loss_reinforce, β, H, sampler, circuit, samples)[3]
 end
