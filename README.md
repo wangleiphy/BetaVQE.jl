@@ -6,7 +6,7 @@
 
 ## Solving Quantum Statistical Mechanics with Variational Autoregressive Networks and Quantum Circuits 
 
-[![CI](https://github.com/wangleiphy/BetaVQE.jl/actions/workflows/CI.yml/badge.svg)](https://github.com/wangleiphy/BetaVQE.jl/actions/workflows/CI.yml)\
+[![CI](https://github.com/wangleiphy/BetaVQE.jl/actions/workflows/CI.yml/badge.svg)](https://github.com/wangleiphy/BetaVQE.jl/actions/workflows/CI.yml)
 
 ### Setup
 Typing `]` in a Julia REPL, and then
