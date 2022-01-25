@@ -1,6 +1,6 @@
 export qaoa_circuit, tns_circuit 
 using Yao
-using YaoExtensions
+using Yao.EasyBuild
 
 get_layout_pairs(nbit::Int; periodic::Bool) = map(i->(i=>i%nbit+1), 1:(periodic ? nbit : nbit-1))
 get_layout_pairs(nx::Int, ny::Int; periodic::Bool) = pair_square(nx, ny; periodic=periodic)

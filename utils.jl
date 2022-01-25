@@ -1,6 +1,6 @@
 using FileIO
 using Yao
-using YaoExtensions
+using Yao.EasyBuild
 using BetaVQE
 using LinearAlgebra
 

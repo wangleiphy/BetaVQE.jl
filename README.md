@@ -9,26 +9,25 @@
 [![Build Status](https://travis-ci.com/wangleiphy/BetaVQE.jl.svg?branch=master)](https://travis-ci.com/wangleiphy/BetaVQE.jl)
 
 ### Setup
-Clone this repo, add dependancies by typing `]` in a Julia REPL, and then
+Typing `]` in a Julia REPL, and then
 ```julia
-pkg> add Yao YaoExtensions
-pkg> add StatsBase Zygote Flux JLD2 FileIO Fire
-pkg> dev https://github.com/wangleiphy/VAN.jl.git 
-pkg> dev .
+pkg> dev https://github.com/wangleiphy/BetaVQE.jl.git
 ```
 
-To make sure it works, type
+To make sure BetaVQE is installed properly, type
 ```bash
-julia test/runtests.jl
+pkg> test BetaVQE
 ```
-in a terminal to run tests.
 
 ### Run
 
-Run this to train the transverse field Ising model
+Run this to train the transverse field Ising model, open a terminal and type
 ```bash 
-julia runner.jl learn 2 2 2.0 2.0
+$ cd ~/.julia/dev/BetaVQE
+$ julia --project runner.jl learn 2 2 2.0 2.0
 ```
+
+For windows user, the Julia develop folder might be different.
 
 This utility accepts the following arguments
 
