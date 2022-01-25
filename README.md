@@ -11,6 +11,8 @@
 ### Setup
 Typing `]` in a Julia REPL, and then
 ```julia
+pkg> add https://github.com/wangleiphy/VAN.jl.git#master
+
 pkg> dev https://github.com/wangleiphy/BetaVQE.jl.git
 ```
 
@@ -24,6 +26,7 @@ pkg> test BetaVQE
 Run this to train the transverse field Ising model, open a terminal and type
 ```bash 
 $ cd ~/.julia/dev/BetaVQE
+
 $ julia --project runner.jl learn 2 2 2.0 2.0
 ```
 
