@@ -95,7 +95,7 @@ end
         network = AutoRegressiveModel(nbits, nhiddens)
     end
 
-    circuit = tns_circuit(nbits, depth, pair_square(nx, ny; periodic=false); entangler=(n,i,j)->put(n,(i,j)=>general_U4()))
+    circuit = tns_circuit(nbits, depth, EasyBuild.pair_square(nx, ny; periodic=false); entangler=(n,i,j)->put(n,(i,j)=>general_U4()))
 
     h = hamiltonian(TFIM(nx, ny; Γ=Γ, periodic=false))
 
