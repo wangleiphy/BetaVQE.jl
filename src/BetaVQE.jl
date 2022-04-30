@@ -1,10 +1,16 @@
 module BetaVQE
-using Yao, LinearAlgebra
-using Flux.Optimise: ADAM, update!
-import Flux
-using StatsBase
-using VAN
+using LinearAlgebra
+using Yao, Yao.EasyBuild, Yao.BitBasis
 
+using VAN, Zygote
+import Optimisers
+import VAN.ChainRulesCore
+using VAN.ChainRulesCore: @non_differentiable, NoTangent, Tangent
+using StatsBase
+
+export qaoa_circuit, tns_circuit 
+export free_energy, free_energy_local, energy, entropy
+export TFIM, hamiltonian
 export train, exact
 
 include("hamiltonian.jl")
@@ -31,14 +37,14 @@ function loss(β, H, sampler, circuit, nbatch::Int)
     free_energy(β, H, sampler, circuit, samples)
 end
 
-function train(β::Real, H::AbstractBlock{N}, sampler::AbstractSampler, circuit::AbstractBlock{N}, logfile=nothing;
-                optimizer=ADAM(0.1), nbatch::Int=1000, niter::Int=100) where N
+function train(β::Real, H::AbstractBlock, sampler::AbstractSampler, circuit::AbstractBlock, logfile=nothing;
+                optimizer=Optimisers.ADAM(0.1), nbatch::Int=1000, niter::Int=100)
     ϕ = model_parameters(sampler)
     θ = parameters(circuit)
+    opt = Optimisers.setup(optimizer, (ϕ=ϕ,θ=θ))
     for i = 1:niter
-        _, _, gϕ, gθ, _ = Flux.gradient(loss, β, H, sampler, circuit, nbatch)
-        update!.(Ref(optimizer), ϕ, collect_gradients(sampler, gϕ))
-        update!(optimizer, θ, gθ)
+        _, _, gϕ, gθ, _ = Zygote.gradient(loss, β, H, sampler, circuit, nbatch)
+        Optimisers.update!(opt, (ϕ=ϕ, θ=θ), (ϕ=collect_gradients(sampler, gϕ), θ=gθ))
         model_dispatch!(sampler, ϕ)
         dispatch!(circuit, θ)
         message = "$i $(loss(β, H, sampler, circuit, nbatch))"
@@ -49,7 +55,7 @@ function train(β::Real, H::AbstractBlock{N}, sampler::AbstractSampler, circuit:
             flush(logfile)
         end
     end
-    ϕ, θ
+    return ϕ, θ
 end
 
 # collect parameters into a tuple

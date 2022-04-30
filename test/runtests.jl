@@ -1,7 +1,7 @@
-using BetaVQE, Yao, Yao.EasyBuild
+using BetaVQE
+using Yao, Yao.EasyBuild, Yao.BitBasis
 using Test, Random, StatsBase
 using Zygote
-using BitBasis
 using VAN
 
 @testset "sample" begin
@@ -122,4 +122,15 @@ end
         g2 = gradient(c->free_energy(2.0, h, model, c, samples), c)[1]
         @test isapprox(g, g2[k], atol=1e-2)
     end
+end
+
+
+@testset "train" begin
+    nbits = 4
+    h = hamiltonian(TFIM(nbits, 1; Γ=0.0, periodic=false))
+    network = PSAModel(nbits)
+    circuit = tns_circuit(nbits, 2, EasyBuild.pair_square(nbits, 1; periodic=false); entangler=(n,i,j)->put(n,(i,j)=>general_U4()))
+    network_params, circuit_params = train(1.0, h, network, circuit; nbatch=1000, niter=100)
+    samples = gen_samples(network, 1000)
+    @test free_energy(1.0, h, network, circuit, samples) <= -3.2
 end

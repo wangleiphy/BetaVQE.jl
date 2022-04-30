@@ -1,4 +1,3 @@
-export TFIM, hamiltonian
 abstract type AbstractModel{D} end
 
 nspin(model::AbstractModel) = prod(model.size)
