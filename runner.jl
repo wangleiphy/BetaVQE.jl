@@ -1,17 +1,43 @@
-using Fire
-using JLD2, FileIO
-using VAN
+using Comonicon
+using JLD2
+using LinearAlgebra
+using BetaVQE.VAN
 using Yao
 using Yao.EasyBuild
 using BetaVQE
-using Flux.Optimise: ADAM
+using Optimisers: ADAM
 using StatsBase
 using Random
 
-include("utils.jl")
+# file storage
+function build_key(nx, ny, Γ, β, depth, nsamples, nhiddens, lr; folder="data")
+    mkpath(folder)
+    key = "tfim"
+    key *= "_nx$nx"
+    key *= "_ny$ny"
+    key *= "_Gamma$Γ"
+    key *= "_beta$β"
+    key *= "_d$depth"
+    key *= "_batch$nsamples"
+    key *= "_lr$lr"
+    key *= "_nhiddens"
 
-@main function scan_beta(nx::Int=2, ny::Int=2, Γ::Real=1.0;
-                         depth::Int=5, nsamples::Int=1000, nhiddens::Vector{Int}=[500], lr::Real=0.01, niter::Int=500, cont::Bool=false)
+    for h in nhiddens
+        key = key * "_$h"
+    end
+    return joinpath(folder, key)
+end
+
+@cast function exact_spectra(nx::Int, ny::Int, Γ::Float64; folder=joinpath("data", "exact"))
+    mkpath(folder)
+    h = hamiltonian(TFIM(nx, ny; Γ=Γ, periodic=false))
+    H = mat(h)
+    w, _ = eigen(Matrix(H))
+    save(joinpath(folder, "nx$nx"*"ny$ny"*"Gamma$Γ"*".jld2"), "spectra", w)
+end
+
+@cast function scan_beta(nx::Int=2, ny::Int=2, Γ::Float64=1.0;
+                         depth::Int=5, nsamples::Int=1000, nhiddens::Vector{Int}=[500], lr::Float64=0.01, niter::Int=500, cont::Bool=false)
 
     for β in collect(0.1:0.1:1.0)
         learn(nx, ny, Γ, β; depth=depth, nsamples=nsamples, nhiddens=nhiddens, lr=lr, niter=niter, cont=cont)
@@ -19,8 +45,8 @@ include("utils.jl")
 
 end
 
-@main function scan_gamma(nx::Int=2, ny::Int=2, β::Real=1.0;
-                         depth::Int=5, nsamples::Int=1000, nhiddens::Vector{Int}=[500], lr::Real=0.01, niter::Int=500, cont::Bool=false)
+@cast function scan_gamma(nx::Int=2, ny::Int=2, β::Float64=1.0;
+                         depth::Int=5, nsamples::Int=1000, nhiddens::Vector{Int}=[500], lr::Float64=0.01, niter::Int=500, cont::Bool=false)
 
     for Γ in collect(0.0:1.0:4.0)
         learn(nx, ny, Γ, β; depth=depth, nsamples=nsamples, nhiddens=nhiddens, lr=lr, niter=niter, cont=cont)
@@ -28,11 +54,11 @@ end
 
 end
 
-@main function learn(nx::Int=2, ny::Int=2, Γ::Real=1.0, β::Real=1.0;
-                  depth::Int=5, nsamples::Int=1000, nhiddens::Vector{Int}=[500], lr::Real=0.01, niter::Int=500, cont::Bool=false)
+@cast function learn(nx::Int=2, ny::Int=2, Γ::Float64=1.0, β::Float64=1.0;
+                  depth::Int=5, nsamples::Int=1000, nhiddens::Vector{Int}=[500], lr::Float64=0.01, niter::Int=500, cont::Bool=false)
 
     Random.seed!(42)
-    key = build_key(nx, ny, Γ, β, depth, nsamples, nhiddens, lr; folder="data/tns3/")
+    key = build_key(nx, ny, Γ, β, depth, nsamples, nhiddens, lr; folder=joinpath("data", "tns3"))
     println(key)
 
     nbits = nx*ny
@@ -80,11 +106,11 @@ end
     save(key*".jld2", "cparams", cparams, "qparams", qparams, "exact", (F_exact, E_exact, S_exact, Cv_exact, γ_exact), "result", (F, E, S, Cv, γ))
 end
 
-@main function inference(nx::Int=2, ny::Int=2, Γ::Real=1.0, β::Real=1.0;
-                  depth::Int=5, nsamples::Int=1000, nhiddens::Vector{Int}=[500], lr::Real=0.01, niter::Int=500)
+@cast function inference(nx::Int=2, ny::Int=2, Γ::Float64=1.0, β::Float64=1.0;
+                  depth::Int=5, nsamples::Int=1000, nhiddens::Vector{Int}=[500], lr::Float64=0.01, niter::Int=500)
 
     Random.seed!(42)
-    key = build_key(nx, ny, Γ, β, depth, nsamples, nhiddens, lr; folder="data/tns3/")
+    key = build_key(nx, ny, Γ, β, depth, nsamples, nhiddens, lr; folder=joinpath("data", "tns3"))
     println(key)
 
     nbits = nx*ny
@@ -116,3 +142,5 @@ end
         file["spectra"] = s
     end
 end
+
+@main
