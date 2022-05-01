@@ -1,4 +1,4 @@
-function ChainRulesCore.rrule(::typeof(free_energy), β::Real, H::AbstractBlock, sampler, circuit::AbstractBlock, samples)
+function rrule(::typeof(VAN.free_energy), β::Real, H::AbstractBlock, sampler, circuit::AbstractBlock, samples)
     free_energy(β, H, sampler, circuit, samples), function (adjy)
         adjθ = grad_θ(H, circuit, samples) * adjy
         nt = map(x->x === nothing ? NoTangent() : x .* adjy, grad_sampler(β, H, sampler, circuit, samples))

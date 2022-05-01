@@ -2,7 +2,11 @@ using BetaVQE
 using Yao, Yao.EasyBuild, Yao.BitBasis
 using Test, Random, StatsBase
 using Zygote
-using VAN
+using BetaVQE.VAN
+
+@testset "VAN" begin
+    include("VAN/VAN.jl")
+end
 
 @testset "sample" begin
     Random.seed!(3)
@@ -123,7 +127,6 @@ end
         @test isapprox(g, g2[k], atol=1e-2)
     end
 end
-
 
 @testset "train" begin
     nbits = 4

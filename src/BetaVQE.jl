@@ -2,11 +2,12 @@ module BetaVQE
 using LinearAlgebra
 using Yao, Yao.EasyBuild, Yao.BitBasis
 
-using VAN, Zygote
+using Zygote
 import Optimisers
-import VAN.ChainRulesCore
-using VAN.ChainRulesCore: @non_differentiable, NoTangent, Tangent
+import ChainRulesCore: @non_differentiable, NoTangent, Tangent, rrule
 using StatsBase
+include("VAN/VAN.jl")
+using .VAN
 
 export qaoa_circuit, tns_circuit 
 export free_energy, free_energy_local, energy, entropy

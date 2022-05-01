@@ -12,7 +12,7 @@ function get_input_reg(nbits::Int, samples::Vector{<:Integer})
     return arrayreg(transpose(config); nbatch=nbatch)
 end
 
-function free_energy(β::Real, H::AbstractBlock, sampler::AbstractSampler, circuit::AbstractBlock, samples)
+function VAN.free_energy(β::Real, H::AbstractBlock, sampler::AbstractSampler, circuit::AbstractBlock, samples)
     mean(free_energy_local(β, H, sampler, circuit, samples))
 end
 

@@ -11,8 +11,6 @@
 ### Setup
 Typing `]` in a Julia REPL, and then
 ```julia
-pkg> add https://github.com/wangleiphy/VAN.jl.git#master
-
 pkg> dev https://github.com/wangleiphy/BetaVQE.jl.git
 ```
 
@@ -30,7 +28,7 @@ $ cd ~/.julia/dev/BetaVQE
 $ julia --project runner.jl learn 2 2 2.0 2.0
 ```
 
-For windows user, the Julia develop folder might be different.
+For Windows operation system, the Julia develop folder might be different.
 
 This utility accepts the following arguments
 

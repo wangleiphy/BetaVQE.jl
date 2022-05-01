@@ -1,6 +1,7 @@
 using Comonicon
 using JLD2
-using VAN
+using LinearAlgebra
+using BetaVQE.VAN
 using Yao
 using Yao.EasyBuild
 using BetaVQE
@@ -27,7 +28,7 @@ function build_key(nx, ny, Γ, β, depth, nsamples, nhiddens, lr; folder="data")
     return joinpath(folder, key)
 end
 
-function exact_spectra(nx::Int, ny::Int, Γ::Float64; folder=joinpath("data", "exact"))
+@cast function exact_spectra(nx::Int, ny::Int, Γ::Float64; folder=joinpath("data", "exact"))
     mkpath(folder)
     h = hamiltonian(TFIM(nx, ny; Γ=Γ, periodic=false))
     H = mat(h)
