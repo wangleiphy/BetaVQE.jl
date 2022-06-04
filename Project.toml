@@ -14,12 +14,12 @@ Yao = "5872b779-8223-5990-8dd0-5abbb0748c8c"
 Zygote = "e88e6eb3-aa80-5325-afca-941959d7151f"
 
 [compat]
-ChainRulesCore = "1.14"
+ChainRulesCore = "1"
 Comonicon = "0.12"
 JLD2 = "0.4"
 Optimisers = "0.2"
 StatsBase = "0.33"
-Yao = "0.7"
+Yao = "0.8"
 Zygote = "0.6"
 julia = "1"
 
