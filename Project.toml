@@ -15,10 +15,10 @@ Zygote = "e88e6eb3-aa80-5325-afca-941959d7151f"
 
 [compat]
 ChainRulesCore = "1"
-Comonicon = "0.12"
+Comonicon = "1"
 JLD2 = "0.4"
-Optimisers = "0.2"
-StatsBase = "0.33"
+Optimisers = "0.3"
+StatsBase = "0.34"
 Yao = "0.8"
 Zygote = "0.6"
 julia = "1"
